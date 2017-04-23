@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhamaPOS", "PhamaPOS\PhamaPOS.csproj", "{17CAA7DF-DD22-4081-A5DF-05D4743C7CCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhamaPOS_Data", "PhamaPOS_Data\PhamaPOS_Data.csproj", "{52E15722-7306-4B95-B938-3426196838DF}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PosSetup", "PosSetup\PosSetup.vdproj", "{13ACE958-30B5-4CD4-A948-9D8AC7103515}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://rangad.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PhamaPOS\\PhamaPOS.csproj
+		SccProjectName1 = PhamaPOS
+		SccLocalPath1 = PhamaPOS
+		SccProjectUniqueName2 = PhamaPOS_Data\\PhamaPOS_Data.csproj
+		SccProjectName2 = PhamaPOS_Data
+		SccLocalPath2 = PhamaPOS_Data
+		SccProjectUniqueName3 = PosSetup\\PosSetup.vdproj
+		SccProjectName3 = PosSetup
+		SccLocalPath3 = PosSetup
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		DVD-5|Any CPU = DVD-5|Any CPU
+		Release|Any CPU = Release|Any CPU
+		SingleImage|Any CPU = SingleImage|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17CAA7DF-DD22-4081-A5DF-05D4743C7CCE}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{17CAA7DF-DD22-4081-A5DF-05D4743C7CCE}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{17CAA7DF-DD22-4081-A5DF-05D4743C7CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17CAA7DF-DD22-4081-A5DF-05D4743C7CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17CAA7DF-DD22-4081-A5DF-05D4743C7CCE}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{17CAA7DF-DD22-4081-A5DF-05D4743C7CCE}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{17CAA7DF-DD22-4081-A5DF-05D4743C7CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17CAA7DF-DD22-4081-A5DF-05D4743C7CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17CAA7DF-DD22-4081-A5DF-05D4743C7CCE}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{17CAA7DF-DD22-4081-A5DF-05D4743C7CCE}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{52E15722-7306-4B95-B938-3426196838DF}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{52E15722-7306-4B95-B938-3426196838DF}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{52E15722-7306-4B95-B938-3426196838DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E15722-7306-4B95-B938-3426196838DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52E15722-7306-4B95-B938-3426196838DF}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E15722-7306-4B95-B938-3426196838DF}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{52E15722-7306-4B95-B938-3426196838DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E15722-7306-4B95-B938-3426196838DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52E15722-7306-4B95-B938-3426196838DF}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{52E15722-7306-4B95-B938-3426196838DF}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{13ACE958-30B5-4CD4-A948-9D8AC7103515}.CD_ROM|Any CPU.ActiveCfg = Release
+		{13ACE958-30B5-4CD4-A948-9D8AC7103515}.Debug|Any CPU.ActiveCfg = Debug
+		{13ACE958-30B5-4CD4-A948-9D8AC7103515}.DVD-5|Any CPU.ActiveCfg = Debug
+		{13ACE958-30B5-4CD4-A948-9D8AC7103515}.Release|Any CPU.ActiveCfg = Release
+		{13ACE958-30B5-4CD4-A948-9D8AC7103515}.SingleImage|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

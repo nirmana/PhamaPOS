@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="010a1c832ba649808eedd5611cfbcfdb" Name="Diagram1">
+        <EntityTypeShape EntityType="PhamaPOSModel.item" Width="1.5" PointX="1.976716407563871" PointY="23.184743668504407" />
+        <EntityTypeShape EntityType="PhamaPOSModel.sale" Width="1.5" PointX="2.6298521620360447" PointY="10.342753117132352" />
+        <EntityTypeShape EntityType="PhamaPOSModel.saleBatch" Width="1.5" PointX="1.2773134136932498" PointY="19.966159054993724" />
+        <EntityTypeShape EntityType="PhamaPOSModel.stock" Width="1.5" PointX="1.5574828579823872" PointY="28.1636952441948" />
+        <EntityTypeShape EntityType="PhamaPOSModel.unit" Width="1.5" PointX="4.1696385984167641" PointY="16.262766577425769" />
+        <EntityTypeShape EntityType="PhamaPOSModel.user" Width="1.5" PointX="7.0157368774599105" PointY="25.280245032757634" />
+        <AssociationConnector Association="PhamaPOSModel.FK_item_unit" />
+        <AssociationConnector Association="PhamaPOSModel.FK_stock_item" />
+        <AssociationConnector Association="PhamaPOSModel.FK_sale_saleBatch" />
+        <AssociationConnector Association="PhamaPOSModel.FK_sale_stock" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

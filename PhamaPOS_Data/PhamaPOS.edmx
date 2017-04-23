@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PhamaPOSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="PhamaPOSModelStoreContainer">
+          <EntitySet Name="item" EntityType="PhamaPOSModel.Store.item" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sale" EntityType="PhamaPOSModel.Store.sale" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="saleBatch" EntityType="PhamaPOSModel.Store.saleBatch" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="stock" EntityType="PhamaPOSModel.Store.stock" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="unit" EntityType="PhamaPOSModel.Store.unit" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="user" EntityType="PhamaPOSModel.Store.user" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_item_unit" Association="PhamaPOSModel.Store.FK_item_unit">
+            <End Role="unit" EntitySet="unit" />
+            <End Role="item" EntitySet="item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sale_saleBatch" Association="PhamaPOSModel.Store.FK_sale_saleBatch">
+            <End Role="saleBatch" EntitySet="saleBatch" />
+            <End Role="sale" EntitySet="sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sale_stock" Association="PhamaPOSModel.Store.FK_sale_stock">
+            <End Role="stock" EntitySet="stock" />
+            <End Role="sale" EntitySet="sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stock_item" Association="PhamaPOSModel.Store.FK_stock_item">
+            <End Role="item" EntitySet="item" />
+            <End Role="stock" EntitySet="stock" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="itemId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="itemCode" Type="int" Nullable="false" />
+          <Property Name="itemDescription" Type="nvarchar" MaxLength="150" />
+          <Property Name="itemCallingName" Type="nvarchar" MaxLength="150" />
+          <Property Name="itemUnitId" Type="int" Nullable="false" />
+          <Property Name="itemStatus" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Nullable="false" />
+          <Property Name="entryBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sale">
+          <Key>
+            <PropertyRef Name="saleId" />
+          </Key>
+          <Property Name="saleId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="saleBatchId" Type="bigint" Nullable="false" />
+          <Property Name="itemStockId" Type="bigint" Nullable="false" />
+          <Property Name="soldQuantity" Type="bigint" Nullable="false" />
+          <Property Name="unitPrice" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="amount" Type="decimal" Nullable="false" Scale="2" />
+        </EntityType>
+        <EntityType Name="saleBatch">
+          <Key>
+            <PropertyRef Name="saleBatchId" />
+          </Key>
+          <Property Name="saleBatchId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="saleDate" Type="datetime" Nullable="false" />
+          <Property Name="subTotal" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="discountedAmount" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="grandTotal" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="entryDate" Type="datetime" Nullable="false" />
+          <Property Name="entryBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="stockId" />
+          </Key>
+          <Property Name="stockId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="itemId" Type="int" Nullable="false" />
+          <Property Name="itemUnitPriceBuying" Type="decimal" Scale="2" />
+          <Property Name="itemUnitPriceSelling" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="StockQuantity" Type="bigint" Nullable="false" />
+          <Property Name="runningQuantity" Type="bigint" Nullable="false" />
+          <Property Name="stockReceivedDate" Type="datetime" Nullable="false" />
+          <Property Name="stockClearedDate" Type="datetime" />
+          <Property Name="isAvailable" Type="bit" Nullable="false" />
+          <Property Name="stockMfdDate" Type="datetime" />
+          <Property Name="stockExpDate" Type="datetime" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Nullable="false" />
+          <Property Name="entryBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="unit">
+          <Key>
+            <PropertyRef Name="unitId" />
+          </Key>
+          <Property Name="unitId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="unitCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="unitDescription" Type="nvarchar" MaxLength="150" />
+          <Property Name="unitStatus" Type="bit" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="userType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_item_unit">
+          <End Role="unit" Type="PhamaPOSModel.Store.unit" Multiplicity="1" />
+          <End Role="item" Type="PhamaPOSModel.Store.item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="unit">
+              <PropertyRef Name="unitId" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="itemUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sale_saleBatch">
+          <End Role="saleBatch" Type="PhamaPOSModel.Store.saleBatch" Multiplicity="1" />
+          <End Role="sale" Type="PhamaPOSModel.Store.sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="saleBatch">
+              <PropertyRef Name="saleBatchId" />
+            </Principal>
+            <Dependent Role="sale">
+              <PropertyRef Name="saleBatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sale_stock">
+          <End Role="stock" Type="PhamaPOSModel.Store.stock" Multiplicity="1" />
+          <End Role="sale" Type="PhamaPOSModel.Store.sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stock">
+              <PropertyRef Name="stockId" />
+            </Principal>
+            <Dependent Role="sale">
+              <PropertyRef Name="itemStockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stock_item">
+          <End Role="item" Type="PhamaPOSModel.Store.item" Multiplicity="1" />
+          <End Role="stock" Type="PhamaPOSModel.Store.stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="stock">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PhamaPOSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PhamaPOSEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="items" EntityType="PhamaPOSModel.item" />
+          <EntitySet Name="sales" EntityType="PhamaPOSModel.sale" />
+          <EntitySet Name="saleBatches" EntityType="PhamaPOSModel.saleBatch" />
+          <EntitySet Name="stocks" EntityType="PhamaPOSModel.stock" />
+          <EntitySet Name="units" EntityType="PhamaPOSModel.unit" />
+          <EntitySet Name="users" EntityType="PhamaPOSModel.user" />
+          <AssociationSet Name="FK_item_unit" Association="PhamaPOSModel.FK_item_unit">
+            <End Role="unit" EntitySet="units" />
+            <End Role="item" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stock_item" Association="PhamaPOSModel.FK_stock_item">
+            <End Role="item" EntitySet="items" />
+            <End Role="stock" EntitySet="stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sale_saleBatch" Association="PhamaPOSModel.FK_sale_saleBatch">
+            <End Role="saleBatch" EntitySet="saleBatches" />
+            <End Role="sale" EntitySet="sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sale_stock" Association="PhamaPOSModel.FK_sale_stock">
+            <End Role="stock" EntitySet="stocks" />
+            <End Role="sale" EntitySet="sales" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Type="Int32" Name="itemId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="itemCode" Nullable="false" />
+          <Property Type="String" Name="itemDescription" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="itemCallingName" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="itemUnitId" Nullable="false" />
+          <Property Type="Boolean" Name="itemStatus" Nullable="false" />
+          <Property Type="DateTime" Name="entryDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="entryBy" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="unit" Relationship="PhamaPOSModel.FK_item_unit" FromRole="item" ToRole="unit" />
+          <NavigationProperty Name="stocks" Relationship="PhamaPOSModel.FK_stock_item" FromRole="item" ToRole="stock" />
+        </EntityType>
+        <EntityType Name="sale">
+          <Key>
+            <PropertyRef Name="saleId" />
+          </Key>
+          <Property Type="Int64" Name="saleId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="saleBatchId" Nullable="false" />
+          <Property Type="Int64" Name="itemStockId" Nullable="false" />
+          <Property Type="Int64" Name="soldQuantity" Nullable="false" />
+          <Property Type="Decimal" Name="unitPrice" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="amount" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="saleBatch" Relationship="PhamaPOSModel.FK_sale_saleBatch" FromRole="sale" ToRole="saleBatch" />
+          <NavigationProperty Name="stock" Relationship="PhamaPOSModel.FK_sale_stock" FromRole="sale" ToRole="stock" />
+        </EntityType>
+        <EntityType Name="saleBatch">
+          <Key>
+            <PropertyRef Name="saleBatchId" />
+          </Key>
+          <Property Type="Int64" Name="saleBatchId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="saleDate" Nullable="false" Precision="3" />
+          <Property Type="Decimal" Name="subTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="discountedAmount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="grandTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="entryDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="entryBy" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="sales" Relationship="PhamaPOSModel.FK_sale_saleBatch" FromRole="saleBatch" ToRole="sale" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="stockId" />
+          </Key>
+          <Property Type="Int64" Name="stockId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="itemId" Nullable="false" />
+          <Property Type="Decimal" Name="itemUnitPriceBuying" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="itemUnitPriceSelling" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int64" Name="StockQuantity" Nullable="false" />
+          <Property Type="Int64" Name="runningQuantity" Nullable="false" />
+          <Property Type="DateTime" Name="stockReceivedDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="stockClearedDate" Precision="3" />
+          <Property Type="Boolean" Name="isAvailable" Nullable="false" />
+          <Property Type="DateTime" Name="stockMfdDate" Precision="3" />
+          <Property Type="DateTime" Name="stockExpDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="entryDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="entryBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="item" Relationship="PhamaPOSModel.FK_stock_item" FromRole="stock" ToRole="item" />
+          <NavigationProperty Name="sales" Relationship="PhamaPOSModel.FK_sale_stock" FromRole="stock" ToRole="sale" />
+        </EntityType>
+        <EntityType Name="unit">
+          <Key>
+            <PropertyRef Name="unitId" />
+          </Key>
+          <Property Type="Int32" Name="unitId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="unitCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="unitDescription" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="unitStatus" />
+          <NavigationProperty Name="items" Relationship="PhamaPOSModel.FK_item_unit" FromRole="unit" ToRole="item" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Type="Int32" Name="userId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="userName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="status" Nullable="false" />
+          <Property Type="String" Name="userType" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_item_unit">
+          <End Type="PhamaPOSModel.unit" Role="unit" Multiplicity="1" />
+          <End Type="PhamaPOSModel.item" Role="item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="unit">
+              <PropertyRef Name="unitId" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="itemUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stock_item">
+          <End Type="PhamaPOSModel.item" Role="item" Multiplicity="1" />
+          <End Type="PhamaPOSModel.stock" Role="stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="stock">
+              <PropertyRef Name="itemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sale_saleBatch">
+          <End Type="PhamaPOSModel.saleBatch" Role="saleBatch" Multiplicity="1" />
+          <End Type="PhamaPOSModel.sale" Role="sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="saleBatch">
+              <PropertyRef Name="saleBatchId" />
+            </Principal>
+            <Dependent Role="sale">
+              <PropertyRef Name="saleBatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sale_stock">
+          <End Type="PhamaPOSModel.stock" Role="stock" Multiplicity="1" />
+          <End Type="PhamaPOSModel.sale" Role="sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stock">
+              <PropertyRef Name="stockId" />
+            </Principal>
+            <Dependent Role="sale">
+              <PropertyRef Name="itemStockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PhamaPOSModelStoreContainer" CdmEntityContainer="PhamaPOSEntities">
+          <EntitySetMapping Name="items">
+            <EntityTypeMapping TypeName="PhamaPOSModel.item">
+              <MappingFragment StoreEntitySet="item">
+                <ScalarProperty Name="entryBy" ColumnName="entryBy" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="itemStatus" ColumnName="itemStatus" />
+                <ScalarProperty Name="itemUnitId" ColumnName="itemUnitId" />
+                <ScalarProperty Name="itemCallingName" ColumnName="itemCallingName" />
+                <ScalarProperty Name="itemDescription" ColumnName="itemDescription" />
+                <ScalarProperty Name="itemCode" ColumnName="itemCode" />
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sales">
+            <EntityTypeMapping TypeName="PhamaPOSModel.sale">
+              <MappingFragment StoreEntitySet="sale">
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+                <ScalarProperty Name="soldQuantity" ColumnName="soldQuantity" />
+                <ScalarProperty Name="itemStockId" ColumnName="itemStockId" />
+                <ScalarProperty Name="saleBatchId" ColumnName="saleBatchId" />
+                <ScalarProperty Name="saleId" ColumnName="saleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="saleBatches">
+            <EntityTypeMapping TypeName="PhamaPOSModel.saleBatch">
+              <MappingFragment StoreEntitySet="saleBatch">
+                <ScalarProperty Name="entryBy" ColumnName="entryBy" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="grandTotal" ColumnName="grandTotal" />
+                <ScalarProperty Name="discountedAmount" ColumnName="discountedAmount" />
+                <ScalarProperty Name="subTotal" ColumnName="subTotal" />
+                <ScalarProperty Name="saleDate" ColumnName="saleDate" />
+                <ScalarProperty Name="saleBatchId" ColumnName="saleBatchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stocks">
+            <EntityTypeMapping TypeName="PhamaPOSModel.stock">
+              <MappingFragment StoreEntitySet="stock">
+                <ScalarProperty Name="entryBy" ColumnName="entryBy" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="stockExpDate" ColumnName="stockExpDate" />
+                <ScalarProperty Name="stockMfdDate" ColumnName="stockMfdDate" />
+                <ScalarProperty Name="isAvailable" ColumnName="isAvailable" />
+                <ScalarProperty Name="stockClearedDate" ColumnName="stockClearedDate" />
+                <ScalarProperty Name="stockReceivedDate" ColumnName="stockReceivedDate" />
+                <ScalarProperty Name="runningQuantity" ColumnName="runningQuantity" />
+                <ScalarProperty Name="StockQuantity" ColumnName="StockQuantity" />
+                <ScalarProperty Name="itemUnitPriceSelling" ColumnName="itemUnitPriceSelling" />
+                <ScalarProperty Name="itemUnitPriceBuying" ColumnName="itemUnitPriceBuying" />
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+                <ScalarProperty Name="stockId" ColumnName="stockId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="units">
+            <EntityTypeMapping TypeName="PhamaPOSModel.unit">
+              <MappingFragment StoreEntitySet="unit">
+                <ScalarProperty Name="unitStatus" ColumnName="unitStatus" />
+                <ScalarProperty Name="unitDescription" ColumnName="unitDescription" />
+                <ScalarProperty Name="unitCode" ColumnName="unitCode" />
+                <ScalarProperty Name="unitId" ColumnName="unitId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="PhamaPOSModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="userType" ColumnName="userType" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
